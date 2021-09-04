@@ -12,9 +12,4 @@ public class DAOController {
     public String getProductName(@RequestParam("name") String name) {
         return DAORepository.getProductName(name);
     }
-
-//    @GetMapping("/products/fetch-product")
-//    public String getProductName() {
-//        return DAORepository.read("select.sql");
-//    }
 }
