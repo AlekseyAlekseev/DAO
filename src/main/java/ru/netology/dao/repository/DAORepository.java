@@ -21,14 +21,11 @@ public class DAORepository {
     @Autowired
     private static NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+
     public static String getProductName(String name) {
         String sql = read("select.sql");
-        System.out.println(sql);
         SqlParameterSource namedParameters = new MapSqlParameterSource("name", name);
-        System.out.println(namedParameters);
-        String named = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, String.class);
-        System.out.println(named);
-        return named;
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, String.class);
     }
 
 
@@ -40,4 +37,5 @@ public class DAORepository {
             throw new RuntimeException(e);
         }
     }
+
 }
