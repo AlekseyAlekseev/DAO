@@ -1,7 +1,6 @@
 package ru.netology.dao.repository;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,11 +17,14 @@ import java.util.stream.Collectors;
 @Repository
 public class DAORepository {
 
-    @Autowired
-    private static NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public DAORepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
 
-    public static String getProductName(String name) {
+    public String getProductName(String name) {
         String sql = read("select.sql");
         SqlParameterSource namedParameters = new MapSqlParameterSource("name", name);
         return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, String.class);

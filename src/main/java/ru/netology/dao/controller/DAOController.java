@@ -8,8 +8,14 @@ import ru.netology.dao.repository.DAORepository;
 @RestController
 public class DAOController {
 
+    DAORepository daoRepository;
+
+    public DAOController(DAORepository daoRepository) {
+        this.daoRepository = daoRepository;
+    }
+
     @GetMapping("/products/fetch-product")
     public String getProductName(@RequestParam("name") String name) {
-        return DAORepository.getProductName(name);
+        return daoRepository.getProductName(name);
     }
 }
